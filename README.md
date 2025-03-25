@@ -105,6 +105,18 @@ The RNN consists of the following layers:
 ### Model Evaluation
 #### Performance Metrics
 The performance of the LSTM model was evaluated using precision, recall, F1-score, and accuracy. The classification report for the model on the test set is as follows:
+| Class       | Precision | Recall | F1-Score | Support |
+|------------|-----------|--------|----------|---------|
+| Harmful | 0.94| 0.79 | 0.86 | 43|
+| Neutral | 0.75 | 0.92 | 0.82 | 36 |
+| Safe| 0.88| 0.85 | 0.86 | 41 |
+| Accuracy | || 0.85 | 120 |
+| Macro avg | 0.86| 0.85 | 0.85 | 120 |
+| Weighted avg| 0.86| 0.85| 0.85| 120 |
+
+
+
+
 #### Explanation
 - Precision: The model's ability to correctly classify positive instances for each class (Safe, Neutral, Harmful). High precision indicates that when the model predicts a class, it is likely correct.
 - Recall: The model's ability to capture all the true instances of each class. A high recall for a class indicates that the model is effective at identifying that class.
