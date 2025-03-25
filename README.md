@@ -53,6 +53,8 @@ To assess the effectiveness of our classification model, we evaluated it using a
 | Weighted-Avg| 0.93     | 0.92   | 0.92     | 120     |
 
 ### Confusion Matrix
+![image](https://github.com/user-attachments/assets/23dc60fd-ce3a-43e2-a097-6dcc290cdb7f)
+
 ### Evaluation Summary
 
 The classification report provides a detailed performance evaluation of the Random Forest model used for YouTube metadata classification into Safe, Neutral, and Harmful categories. The key observations are:
@@ -77,5 +79,57 @@ To classify YouTube metadata into Safe, Neutral, and Harmful categories, we impl
 ## Text Tokenization and Sequence Padding 
 - A Tokenizer was used with a vocabulary size of 10,000 words.
 - The text data was converted into sequences and padded to a fixed length of 200 for uniform input size.
+
+## LSTM Model
+The LSTM architecture of the model used is in the image given.
+![image](https://github.com/user-attachments/assets/d1770cd4-5261-4dab-ba1c-a1dfd49fee78)
+
+The RNN consists of the following layers:
+- Input Layer: The textual data, which has been tokenized. 
+- Embedding Layer: Converts input sequences of text into dense vector representations of fixed size (128 dimensions) to capture semantic relationships between words.
+- LSTM Layer (64 units): A Long Short-Term Memory layer with 64 units that processes the sequential data, retaining important temporal dependencies between words. return_sequences=True ensures that the output of this layer is passed to the next LSTM layer.
+- LSTM Layer (32 units): Another LSTM layer with 32 units to capture further sequential dependencies in the data.
+- Dense Layer (64 units): A fully connected layer with 64 units and ReLU activation, which adds non-linearity and helps the model learn complex patterns.
+- Dropout Layer (0.5 rate): A dropout layer with a 50% dropout rate to reduce overfitting by randomly setting a fraction of input units to 0 during training.
+- Output Layer (3 units): A dense output layer with 3 units (corresponding to the Safe, Neutral, and Harmful categories), and a softmax activation function to produce probability distributions over the output classes.
+
+## LSTM Model Training
+- Loss Function: Since this is a multi-class classification problem, we used categorical cross-entropy as the loss function. This is appropriate for problems where each input can belong to one of several classes.
+- Optimizer: The Adam optimizer was used for its ability to adaptively adjust the learning rate during training. Adam is a popular choice for training deep learning models because it generally converges faster and provides good results.
+- Model Training Parameters:
+- Epochs: 10 epochs were used for training, meaning the model passed through the entire training dataset 10 times.
+- Batch Size: A batch size of 32 was used, which determines how many samples are processed before updating the model's weights.
+- Validation Split: A portion of the training data (20%) was used for validation, allowing the model to tune its parameters and avoid overfitting.
+
+## LSTM Model Evaluation
+### Model Evaluation
+#### Performance Metrics
+The performance of the LSTM model was evaluated using precision, recall, F1-score, and accuracy. The classification report for the model on the test set is as follows:
+#### Explanation
+- Precision: The model's ability to correctly classify positive instances for each class (Safe, Neutral, Harmful). High precision indicates that when the model predicts a class, it is likely correct.
+- Recall: The model's ability to capture all the true instances of each class. A high recall for a class indicates that the model is effective at identifying that class.
+- F1-Score: The harmonic mean of precision and recall, providing a balance between the two. A higher F1-score signifies a better overall performance, especially in the presence of imbalanced data.
+- Accuracy: The proportion of correctly classified instances across all classes. The model achieved an accuracy of 85% on the test set.
+### Confusion Matrix
+The LSTM model's performance was assessed using key metrics such as precision, recall, F1-score, and accuracy. Below is the classification report summarizing the results:
+![image](https://github.com/user-attachments/assets/ad24d076-56a6-48e0-bbed-51b47853f0b2)
+ 
+### Explanation
+1. Precision: Measures the accuracy of the model when predicting a particular class (Safe, Neutral, Harmful). Higher precision for "Harmful" indicates fewer false positives.
+2. Recall: Indicates the model's ability to detect all instances of a class. A higher recall for "Neutral" means the model can successfully capture more neutral content.
+3. F1-Score: A balanced measure combining precision and recall. The overall F1-scores are decent for each class, showing a good trade-off between precision and recall
+4. Accuracy: Overall, the model achieved an accuracy of 85%, meaning 85% of the predictions on the test set were correct.
+
+![image](https://github.com/user-attachments/assets/3c5b7323-4bc8-4261-a3f8-fbc1a2de9bfc)
+
+# Improvements
+The UI (flask) component needs to be developed. In production we can have a REST API built for the Youtube Content Moderation module.
+The client can POST the youtube URL via REST API
+The server runs the inference module using the URL and obtains the response
+The response is relayed back via REST API response to the client
+We can reduce overfitting and improve the accuracy of the prediction by tuning the hyperparameters.
+
+	
+
 
 
