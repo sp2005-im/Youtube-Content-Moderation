@@ -4,12 +4,12 @@ This repository contains a folder named `new_folder` that holds a CSV file conta
 
 ## Files in this Folder
 
-- `youtube_metadata.csv`: This CSV file contains metadata for 600 YouTube videos. The data is structured in 8 columns and includes key information to analyze video performance, categorization, and more.
+- `metadata.csv`: This CSV file contains metadata for 600 YouTube videos. The data is structured in 8 columns and includes key information to analyze video performance, categorization, and more.
 
 ## How to Use the CSV File
 
 1. **Download the CSV File**:
-   - To download the file, click on `youtube_metadata.csv` in the folder and select `Download`.
+   - To download the file, click on `metadata.csv` in the folder and select `Download`.
 
 2. **Load the Data in Python**:
    You can load the CSV file into a pandas DataFrame in Python for further analysis or processing. Here's an example code:
