@@ -1,0 +1,7 @@
+google-api-python-client
+pandas
+numpy
+scikit-learn
+matplotlib
+nltk
+seaborn
